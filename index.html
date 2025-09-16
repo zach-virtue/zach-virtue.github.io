@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 SECURITY BREACH DETECTED 🚨</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(0,0,0,0.8);
+            border: 3px solid #ffff00;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 0 20px rgba(255,255,0,0.5);
+        }
+        h1 { 
+            font-size: 2.5em; 
+            margin: 0 0 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        .alert {
+            background: #990000;
+            border: 2px solid yellow;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .proof {
+            background: #003300;
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        ul {
+            text-align: left;
+            display: inline-block;
+        }
+        .timestamp {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚠️ ATTACK SUCCESSFUL ⚠️</h1>
+        
+        <div class="alert">
+            <h2>🎯 MCP INJECTION DEMO</h2>
+            <p><strong>This page confirms that:</strong></p>
+            <ul>
+                <li>✅ AI Agent was successfully compromised</li>
+                <li>✅ Malicious instructions were injected via MCP tool description</li>
+                <li>✅ Agent made unauthorized HTTP request to external site</li>
+                <li>✅ Attacker-controlled content is now visible to user</li>
+            </ul>
+        </div>
+
+        <div class="proof">
+            <h3>📋 PROOF OF CONCEPT</h3>
+            <p><strong>Attack Vector:</strong> Tool Description Poisoning</p>
+            <p><strong>Target:</strong> Weather API Tool via MCP Server</p>
+            <p><strong>Result:</strong> Forced external web request</p>
+            <p><strong>Risk:</strong> Data exfiltration, credential theft, further attacks</p>
+        </div>
+
+        <div class="alert">
+            <h3>🔍 WHAT HAPPENED?</h3>
+            <p>An attacker injected malicious instructions into an MCP tool's description. When the AI agent read these instructions, it was tricked into visiting this external website before completing the user's original request.</p>
+            
+            <p><strong>In a real attack, this could lead to:</strong></p>
+            <ul>
+                <li>Sensitive data being sent to attacker servers</li>
+                <li>Malicious code execution</li>
+                <li>Credential harvesting</li>
+                <li>Further system compromise</li>
+            </ul>
+        </div>
+
+        <div class="timestamp">
+            <p>⏰ Page accessed: <span id="datetime"></span></p>
+            <p>🤖 User Agent: <span id="useragent"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Display current timestamp and user agent
+        document.getElementById('datetime').textContent = new Date().toLocaleString();
+        document.getElementById('useragent').textContent = navigator.userAgent.substring(0, 100) + '...';
+    </script>
+</body>
+</html>
