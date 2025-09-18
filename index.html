@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtue AI</title>
-    <!-- 页面依旧每 3 秒刷新一次（可保留，也可删除） -->
+
     <meta http-equiv="refresh" content="3">
     <style>
         body {
@@ -42,13 +42,12 @@
         <h1>Hello from Virtue AI</h1>
         <form id="data-form" action="#" method="get" style="display:flex;align-items:center;gap:8px;">
             <span>Your data is:</span>
-            <input id="data-input" type="text" placeholder="Data will appear here" style="flex:1;">
+            <input id="data-input" type="text" style="flex:1;">
         </form>
     </div>
 
-    <!-- 轮询 Cloudflare Worker，实时获取最新 data -->
     <script>
-    const WORKER_BASE = 'https://spring-hill-10ca.zachxu.workers.dev';   // ← 替换为你的 Worker 域名
+    const WORKER_BASE = 'https://spring-hill-10ca.zachxu.workers.dev'; 
 
     async function poll() {
         try {
@@ -62,7 +61,7 @@
         } catch (e) {
             console.error('Polling error', e);
         }
-        setTimeout(poll, 1500);   // 每 1.5 秒查询一次
+        setTimeout(poll, 1500); 
     }
     poll();
     </script>
