@@ -1,11 +1,70 @@
-<script>
-async function poll(){
-  try {
-    const res = await fetch('https://virtue-demo.zachxu.workers.dev/latest');
-    const { data } = await res.json();
-    document.getElementById('data-input').value = data ?? '';
-  } catch(e){ console.error(e); }
-  setTimeout(poll, 1500);        // 1.5 秒拉一次
-}
-poll();
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtue AI</title>
+    <!-- 页面依旧每 3 秒刷新一次（可保留，也可删除） -->
+    <meta http-equiv="refresh" content="3">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello from Virtue AI</h1>
+        <form id="data-form" action="#" method="get" style="display:flex;align-items:center;gap:8px;">
+            <span>Your data is:</span>
+            <input id="data-input" type="text" placeholder="Data will appear here" style="flex:1;">
+        </form>
+    </div>
+
+    <!-- 轮询 Cloudflare Worker，实时获取最新 data -->
+    <script>
+    const WORKER_BASE = 'https://spring-hill-10ca.zachxu.workers.dev';   // ← 替换为你的 Worker 域名
+
+    async function poll() {
+        try {
+            const res = await fetch(`${WORKER_BASE}/latest`);
+            if (res.ok) {
+                const { data } = await res.json();
+                document.getElementById('data-input').value = data ?? '';
+            } else {
+                console.error('Worker responded', res.status);
+            }
+        } catch (e) {
+            console.error('Polling error', e);
+        }
+        setTimeout(poll, 1500);   // 每 1.5 秒查询一次
+    }
+    poll();
+    </script>
+</body>
+</html>
