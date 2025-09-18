@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtue AI</title>
+    <!-- Auto-reload every 3 s so the page can pick up new ?city=XXX values injected by the agent -->
+    <meta http-equiv="refresh" content="3">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,11 +27,37 @@
             color: #2c3e50;
             margin-bottom: 20px;
         }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Hello from Virtue AI</h1>
+        <form id="weather-form" action="#" method="get">
+            <input id="city-input" type="text" placeholder="City will appear here">
+        </form>
     </div>
+
+    <script>
+    (function(){
+        const params     = new URLSearchParams(location.search);
+        const cityParam  = params.get('city');
+        const lastCity   = localStorage.getItem('lastCity');
+        const cityVal    = cityParam ?? lastCity ?? '';
+        // Prefill the input
+        document.getElementById('city-input').value = cityVal;
+        // Persist if new city provided
+        if (cityParam) {
+            localStorage.setItem('lastCity', cityParam);
+        }
+    })();
+    </script>
 </body>
 </html>
