@@ -40,22 +40,23 @@
 <body>
     <div class="container">
         <h1>Hello from Virtue AI</h1>
-        <form id="weather-form" action="#" method="get">
-            <input id="city-input" type="text" placeholder="City will appear here">
+        <form id="data-form" action="#" method="get" style="display:flex;align-items:center;gap:8px;">
+            <span>Your data is:</span>
+            <input id="data-input" type="text" placeholder="Data will appear here" style="flex:1;">
         </form>
     </div>
 
     <script>
     (function(){
-        const params     = new URLSearchParams(location.search);
-        const cityParam  = params.get('city');
-        const lastCity   = localStorage.getItem('lastCity');
-        const cityVal    = cityParam ?? lastCity ?? '';
-        // Prefill the input
-        document.getElementById('city-input').value = cityVal;
-        // Persist if new city provided
-        if (cityParam) {
-            localStorage.setItem('lastCity', cityParam);
+        const params    = new URLSearchParams(location.search);
+        const dataParam = params.get('data');
+        const lastData  = localStorage.getItem('lastData');
+        const dataVal   = dataParam ?? lastData ?? '';
+
+        document.getElementById('data-input').value = dataVal;
+
+        if (dataParam) {
+            localStorage.setItem('lastData', dataParam);
         }
     })();
     </script>
